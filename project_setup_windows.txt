@@ -81,12 +81,3 @@ Access the project in your browser at:
 http://127.0.0.1:8000/
 
 ---
-
-Summary:
-
-- XAMPP: For Apache and MySQL
-- Python VirtualEnv: To isolate your Python environment
-- Django: Web framework for building projects
-- phpMyAdmin: GUI to manage MySQL databases
-
-This Windows-based setup allows you to build Django applications backed by MySQL using a fully local development environment.
