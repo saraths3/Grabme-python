@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Chatbot Response</h1>
+        {% if results_data %}
+        <ul>
+            {% for result in results_data %}
+                <li style="list-style-type: none;">
+                    <p><b>{{ forloop.counter }}. {{ result.title }}</b></p>
+                    <p><a href="{{ result.link }}">{{ result.link }}</a></p>
+                    <p><strong>Description:</strong> {{ result.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        {% elif error_message %}
+        <p class="error-message">{{ error_message }}</p>
+        {% else %}
+        <p class="no-results-message">No results to display.</p>
+        {% endif %}
+
+        <a href="{% url 'chatbot_form' %}" class="back-button">Back to Ask a Question</a>
+    </div>
+</body>
+</html>

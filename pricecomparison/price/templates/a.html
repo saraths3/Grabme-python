@@ -1,0 +1,115 @@
+<html>
+    <body>
+       <fond color="red" size="10px" face="impact">Price Comparison</fond>
+        
+        </body></html>
+
+
+
+        <!DOCTYPE html>
+<html>
+<head>
+    <title>Similar Products</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Similar Products for "{{ product_name }}"</h1>
+        {% if similar_products %}
+            <div class="row">
+                {% for similar_product in similar_products %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ similar_product.image }}" class="card-img-top" alt="{{ similar_product.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ similar_product.title }}</h5>
+                                <p class="card-text">Price: {{ similar_product.price }}</p>
+                                <a href="{{ similar_product.link }}" target="_blank" class="btn btn-primary">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No similar products found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+import requests
+from bs4 import BeautifulSoup
+from django.shortcuts import render
+from googlesearch import search
+from .forms import ProductForm
+
+def get_product_info(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.content, 'html.parser')
+        title_tag = soup.find('title')
+        link = url
+
+        if title_tag:
+            title = title_tag.text.strip()
+            return {
+                'title': title,
+                'link': link,
+            }
+
+    return None
+
+def search_similar_products(query):
+    query = query + " similar products"
+    search_results = search(query, num_results=5)
+    similar_products = []
+
+    for result in search_results:
+        product_info = get_product_info(result)
+        if product_info:
+            similar_products.append(product_info)
+
+    return similar_products
+
+def home(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save()
+            product_name = form.cleaned_data['name']
+            similar_products = search_similar_products(product_name)
+            return render(request, 'results.html', {'product_name': product_name, 'similar_products': similar_products})
+    else:
+        form = ProductForm()
+    return render(request, 'home.html', {'form': form})
+
+
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Similar Products</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Similar Products for "{{ product_name }}"</h1>
+        {% if similar_products %}
+            <div class="row">
+                {% for similar_product in similar_products %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ similar_product.image }}" class="card-img-top" alt="{{ similar_product.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ similar_product.title }}</h5>
+                                <p class="card-text">Price: {{ similar_product.price }}</p>
+                                <a href="{{ similar_product.link }}" target="_blank" class="btn btn-primary">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No similar products found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

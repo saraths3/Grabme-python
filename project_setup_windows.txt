@@ -1,0 +1,40 @@
+Required Softwares ;
+1.XXAMP
+   1. Open XXAMP
+   2. Start Apche & MySql
+      Click on MySql->Admin
+   3. Create Batabase
+2.Python 3.8.0 or >
+
+Installing VirtualEnvironment ;
+1. D:\project>pip install virtualenv
+
+Naming VertualEnvironment ;
+2. D:\project>virtualenv venv
+
+Activating VirtualEnvironment ;
+3. D:\project>cd venv
+   D:\project\venv>cd Scripts
+   D:\project\venv\Scripts>activate
+   (venv) D:\project\venv\Scripts>
+   cls 
+   cd..
+   cd..
+
+Installing Django ;
+4. (venv) D:\project>pip install Django
+   (venv) D:\project>pip install requests
+   (venv) D:\project>pip install beautifulsoap4
+   (venv) D:\project>pip install mysqlclient
+
+Starting project
+5. (venv) D:\project>django-admin startproject projectname
+
+Creating App ;
+6. (venv) D:\project\projectname>python manage.py startapp appname
+
+Running Project ;
+(venv) D:\project\projectname>python manage.py runserver
+
+
+

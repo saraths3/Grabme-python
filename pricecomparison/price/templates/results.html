@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Similar Products</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Similar Products for "{{ product_name }}"</h1>
+        {% if similar_products %}
+            <div class="row">
+                {% for similar_product in similar_products %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ similar_product.image }}" class="card-img-top" alt="{{ similar_product.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ similar_product.title }}</h5>
+                                <p class="card-text">Price: {{ similar_product.price }}</p>
+                                <a href="{{ similar_product.link }}" target="_blank" class="btn btn-primary">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No similar products found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
