@@ -3,6 +3,7 @@
 **Grab Me** is a Python Django-based web application that performs real-time **price comparison** of products across multiple online shopping websites using web scraping. It helps users identify the best available deals by fetching, comparing, and filtering prices of similar or identical products.
 
 ---
+(https://github.com/saraths3/Grabme-python/raw/refs/heads/main/logo.png)
 
 ## Features
 
