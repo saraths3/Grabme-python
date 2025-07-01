@@ -90,12 +90,3 @@ Steps:
 Access the local server at: http://127.0.0.1:8000/
 
 ---
-
-Summary:
-
-- XAMPP: For local Apache + MySQL setup
-- Virtualenv: For isolated Python environments
-- Django: Web development framework
-- MySQL Integration: Using phpMyAdmin and mysqlclient
-
-This setup provides a complete development environment for building Django web applications backed by a MySQL database.
