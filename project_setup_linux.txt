@@ -1,139 +1,101 @@
-**Linux Setup Guide: XAMPP + Python + Django**
+Linux Setup Guide: XAMPP + Python + Django
 
 ---
 
-### 1. Install and Launch XAMPP on Linux
+1. Install and Launch XAMPP on Linux
 
-**XAMPP** is a free and open-source web server stack that includes Apache, MySQL (MariaDB), PHP, and Perl. It is useful for running a local server on Linux systems.
+XAMPP is a free and open-source web server stack that includes Apache, MySQL (MariaDB), PHP, and Perl. It is useful for running a local server on Linux systems.
 
-**Steps:**
+Steps:
 
 1. Download the XAMPP installer from the official website:
-   [https://www.apachefriends.org/index.html](https://www.apachefriends.org/index.html)
+   https://www.apachefriends.org/index.html
 
 2. Open a terminal and navigate to the directory where the installer was downloaded.
 
 3. Make the installer executable:
-
-   ```bash
    chmod +x xampp-linux-x64-*.run
-   ```
 
 4. Run the installer as superuser:
-
-   ```bash
    sudo ./xampp-linux-x64-*.run
-   ```
 
 5. Launch the XAMPP control panel:
-
-   ```bash
    sudo /opt/lampp/manager-linux-x64.run
-   ```
 
 6. In the GUI panel:
+   - Start Apache
+   - Start MySQL
+   - Click MySQL -> Admin to open phpMyAdmin in your browser
 
-   * Start **Apache**
-   * Start **MySQL**
-   * Click **MySQL -> Admin** to open phpMyAdmin in your browser
-
-7. Use phpMyAdmin to create a new database for your Django project (e.g., `myprojectdb`).
+7. Use phpMyAdmin to create a new database for your Django project (e.g., myprojectdb).
 
 ---
 
-### 2. Set Up Python Virtual Environment
+2. Set Up Python Virtual Environment
 
 A Python virtual environment allows you to manage project-specific dependencies in an isolated workspace.
 
-**Steps:**
+Steps:
 
 1. Navigate to your project directory:
-
-   ```bash
    cd /path/to/project
-   ```
 
-2. Install `virtualenv` (if not already installed):
-
-   ```bash
+2. Install virtualenv (if not already installed):
    pip install virtualenv
-   ```
 
-3. Create a virtual environment named `venv`:
-
-   ```bash
+3. Create a virtual environment named venv:
    virtualenv venv
-   ```
 
 4. Activate the virtual environment:
-
-   ```bash
    source venv/bin/activate
-   ```
 
 ---
 
-### 3. Install Django and Required Python Packages
+3. Install Django and Required Python Packages
 
 Install Django and other necessary Python libraries using pip.
 
-**Commands:**
+Commands:
+   pip install Django
+   pip install requests
+   pip install beautifulsoup4
+   pip install mysqlclient
 
-```bash
-pip install Django
-pip install requests
-pip install beautifulsoup4
-pip install mysqlclient
-```
-
-**Package Descriptions:**
-
-* **Django**: Web framework for building web applications
-* **requests**: For handling HTTP requests
-* **beautifulsoup4**: For parsing HTML and web scraping
-* **mysqlclient**: MySQL database connector compatible with Django
+Package Descriptions:
+- Django: Web framework for building web applications
+- requests: For handling HTTP requests
+- beautifulsoup4: For parsing HTML and web scraping
+- mysqlclient: MySQL database connector compatible with Django
 
 ---
 
-### 4. Create and Run a Django Project
+4. Create and Run a Django Project
 
 After installing all dependencies, initialize and run your Django project.
 
-**Steps:**
+Steps:
 
-1. Create a Django project (replace `projectname` with your desired name):
-
-   ```bash
+1. Create a Django project (replace projectname with your desired name):
    django-admin startproject projectname
-   ```
 
 2. Navigate into your project directory:
-
-   ```bash
    cd projectname
-   ```
 
-3. Create a Django app (replace `appname` with your desired app name):
-
-   ```bash
+3. Create a Django app (replace appname with your desired app name):
    python manage.py startapp appname
-   ```
 
 4. Run the Django development server:
-
-   ```bash
    python manage.py runserver
-   ```
 
-Access the local server at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+Access the local server at: http://127.0.0.1:8000/
 
 ---
 
-### Summary:
+Summary:
 
-* **XAMPP**: For local Apache + MySQL setup
-* **Virtualenv**: For isolated Python environments
-* **Django**: Web development framework
-* **MySQL Integration**: Using phpMyAdmin and `mysqlclient`
+- XAMPP: For local Apache + MySQL setup
+- Virtualenv: For isolated Python environments
+- Django: Web development framework
+- MySQL Integration: Using phpMyAdmin and mysqlclient
 
 This setup provides a complete development environment for building Django web applications backed by a MySQL database.
